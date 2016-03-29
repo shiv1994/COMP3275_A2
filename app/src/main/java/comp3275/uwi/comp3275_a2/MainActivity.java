@@ -54,4 +54,8 @@ public class MainActivity extends AppCompatActivity {
     public void launchAccelerometerActivity(View view){
         startActivity(new Intent(this, AccelerometerSensor.class));
     }
+
+    public void launchLocationActivity(View view){
+        startActivity(new Intent(this, LocationActivity.class));
+    }
 }

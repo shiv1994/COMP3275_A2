@@ -12,19 +12,23 @@
     tools:context="comp3275.uwi.comp3275_a2.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView" />
-
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Launch Accelerometer Activity"
         android:id="@+id/button"
-        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:onClick="launchAccelerometerActivity"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LAUNCH LOCATION ACTIVITY"
+        android:id="@+id/button2"
+        android:onClick="launchLocationActivity"
+        android:layout_below="@+id/button"
+        android:layout_marginTop="41dp"
+        android:layout_alignStart="@+id/button"
+        android:layout_alignEnd="@+id/button" />
 </RelativeLayout>
