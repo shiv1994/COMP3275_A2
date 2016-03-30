@@ -40,4 +40,15 @@
         android:layout_alignEnd="@+id/gyroscope_btn"
         android:layout_alignStart="@+id/gyroscope_btn"
         android:onClick="launchProximityActivity"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Launch Location Activity"
+        android:id="@+id/loc_btn"
+        android:onClick="launchLocationActivity"
+        android:layout_below="@+id/proximity_btn"
+        android:layout_alignStart="@+id/proximity_btn"
+        android:layout_alignEnd="@+id/proximity_btn" />
+
 </RelativeLayout>

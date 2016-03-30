@@ -4,6 +4,7 @@
     <string name="title_activity_accelerometer_sensor">AccelerometerSensor</string>
     <string name="accelerometer_btn_txt">Launch Accelerometer Activity</string>
     <string name="gyroscope_btn_txt">Launch Gyroscope Activity</string>
+    <string name="location_btn_txt">Launch Location Activity</string>
     <string name="proximity_btn_txt">Launch Proximity Activity</string>
     <string name="title_activity_gyroscope_sensor">GyroscopeSensor</string>
     <string name="title_activity_proximity_sensor">ProximitySensor</string>
@@ -11,4 +12,6 @@
     <string name="gyro_label_1">Rate of rotation around the x-axis</string>
     <string name="gyro_label_2">Rate of rotation around the y-axis</string>
     <string name="gyro_label_3">Rate of rotation around the z-axis</string>
+    <string name="title_activity_location">LocationActivity</string>
+
 </resources>

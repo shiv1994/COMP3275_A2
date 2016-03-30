@@ -62,4 +62,9 @@ public class MainActivity extends AppCompatActivity {
     public void launchProximityActivity(View view){
         startActivity(new Intent(this, ProximitySensor.class));
     }
+
+    public void launchLocationActivity(View view){
+        startActivity(new Intent(this, LocationActivity.class));
+    }
 }
+
