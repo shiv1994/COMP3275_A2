@@ -12,19 +12,32 @@
     tools:context="comp3275.uwi.comp3275_a2.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView" />
-
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Launch Accelerometer Activity"
-        android:id="@+id/button"
-        android:layout_below="@+id/textView"
+        android:text="@string/accelerometer_btn_txt"
+        android:id="@+id/accelerometer_btn"
         android:layout_centerHorizontal="true"
         android:onClick="launchAccelerometerActivity"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gyroscope_btn_txt"
+        android:id="@+id/gyroscope_btn"
+        android:layout_below="@+id/accelerometer_btn"
+        android:layout_alignStart="@+id/accelerometer_btn"
+        android:layout_alignEnd="@+id/accelerometer_btn"
+        android:onClick="launchGyroscopeActivity"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/proximity_btn_txt"
+        android:id="@+id/proximity_btn"
+        android:layout_below="@+id/gyroscope_btn"
+        android:layout_alignEnd="@+id/gyroscope_btn"
+        android:layout_alignStart="@+id/gyroscope_btn"
+        android:onClick="launchProximityActivity"/>
 </RelativeLayout>

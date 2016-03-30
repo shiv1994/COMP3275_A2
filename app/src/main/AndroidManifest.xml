@@ -21,7 +21,26 @@
         <activity
             android:name=".AccelerometerSensor"
             android:label="@string/title_activity_accelerometer_sensor"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GyroscopeSensor"
+            android:label="@string/title_activity_gyroscope_sensor"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="comp3275.uwi.comp3275_a2.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ProximitySensor"
+            android:label="@string/title_activity_proximity_sensor"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="comp3275.uwi.comp3275_a2.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -54,4 +54,12 @@ public class MainActivity extends AppCompatActivity {
     public void launchAccelerometerActivity(View view){
         startActivity(new Intent(this, AccelerometerSensor.class));
     }
+
+    public void launchGyroscopeActivity(View view){
+        startActivity(new Intent(this, GyroscopeSensor.class));
+    }
+
+    public void launchProximityActivity(View view){
+        startActivity(new Intent(this, ProximitySensor.class));
+    }
 }
