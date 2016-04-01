@@ -12,8 +12,10 @@ public class MyLocationReciever extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, "Intent Detected.", Toast.LENGTH_LONG).show();
-        Intent main = new Intent(context, MainActivity.class);
-        main.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(main);
+//        Intent main = new Intent(context, LocationActivity.class);
+//        main.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        context.startActivity(main);
+          context.startService(new Intent(context, LocationService.class));
+
     }
 }

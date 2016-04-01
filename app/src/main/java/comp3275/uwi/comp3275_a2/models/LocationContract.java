@@ -12,8 +12,8 @@ public class LocationContract {
     public static final String CREATE_TABLE = "CREATE TABLE " +
             LocationEntry.TABLE_NAME + " (" +
             LocationEntry._ID + INT_TYPE + " PRIMARY KEY AUTOINCREMENT, " +
-            LocationEntry.LAT + TEXT_TYPE + " "+
-            LocationEntry.LONG + TEXT_TYPE +
+            LocationEntry.LAT + TEXT_TYPE + ", "+
+            LocationEntry.LONG + TEXT_TYPE + ","+
             LocationEntry.TIME + " DATE DEFAULT CURRENT_TIMESTAMP" +
             ");";
 
