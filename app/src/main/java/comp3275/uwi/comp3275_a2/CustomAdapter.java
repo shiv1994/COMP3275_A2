@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class CustomAdapter extends ArrayAdapter<LocationObject> {
     public View getView(int position, View v, ViewGroup p){
         // use the layout we created.
         LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
-        View rowView = inflater.inflate(R.layout.locationobjectlayout, p, false);
+        View rowView = inflater.inflate(resource, p, false);
 
         //get the elements.
         TextView time = (TextView)rowView.findViewById(R.id.timeTxtView);
