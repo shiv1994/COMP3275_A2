@@ -66,5 +66,9 @@ public class MainActivity extends AppCompatActivity {
     public void launchLocationActivity(View view){
         startActivity(new Intent(this, LocationActivity.class));
     }
+
+    public void launchBluetoothActivity(View view){
+        startActivity(new Intent(this, BluetoothActivity.class));
+    }
 }
 

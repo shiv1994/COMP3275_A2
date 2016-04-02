@@ -51,4 +51,14 @@
         android:layout_alignStart="@+id/proximity_btn"
         android:layout_alignEnd="@+id/proximity_btn" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bluetooth_btn_txt"
+        android:id="@+id/blue_btn"
+        android:onClick="launchBluetoothActivity"
+        android:layout_below="@+id/loc_btn"
+        android:layout_alignStart="@+id/loc_btn"
+        android:layout_alignEnd="@+id/loc_btn" />
+
 </RelativeLayout>
