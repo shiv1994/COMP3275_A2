@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,6 +19,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
+
+import comp3275.uwi.comp3275_a2.models.DBHelper;
 
 public class LocationActivity extends AppCompatActivity implements LocationListener {
     private LocationManager locationManager;
@@ -37,7 +41,18 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
                         .setAction("Action", null).show();
             }
         });
+        setUpDB();
+        setUpLocationManager();
+    }
 
+    public void setUpDB(){
+        //Setup DB
+        SQLiteOpenHelper helper = new DBHelper(this);
+        final SQLiteDatabase db = helper.getWritableDatabase();
+    }
+
+    public void setUpLocationManager(){
+        //Setting up location manager
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if ( ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
@@ -50,7 +65,6 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
 
     @Override
     public void onLocationChanged(Location location) {
-
         String msg = "New Latitude: " + location.getLatitude()
                 + "New Longitude: " + location.getLongitude();
 

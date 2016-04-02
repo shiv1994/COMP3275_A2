@@ -1,6 +1,10 @@
 package comp3275.uwi.comp3275_a2;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import comp3275.uwi.comp3275_a2.models.DBHelper;
+import comp3275.uwi.comp3275_a2.models.LocationContract;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +37,23 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        SQLiteOpenHelper helper = new DBHelper(this);
+        final SQLiteDatabase db = helper.getReadableDatabase();
+
+        String[] fields = {LocationContract.LocationEntry.LAT, LocationContract.LocationEntry.LONG};
+
+ /* get the results. */
+        Cursor res = db.query(LocationContract.LocationEntry.TABLE_NAME, fields, null, null, null, null, null);
+
+
+ /* traverse results. */
+        while(res.moveToNext()){
+
+            String lat = res.getString(res.getColumnIndex(LocationContract.LocationEntry.LAT));
+
+            Toast.makeText(getBaseContext(),"LAT IS:"+lat , Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
