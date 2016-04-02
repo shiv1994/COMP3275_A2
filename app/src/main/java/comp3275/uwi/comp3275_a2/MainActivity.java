@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import comp3275.uwi.comp3275_a2.models.DBHelper;
 import comp3275.uwi.comp3275_a2.models.LocationContract;
+import comp3275.uwi.comp3275_a2.models.LocationObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,23 +38,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-        SQLiteOpenHelper helper = new DBHelper(this);
-        final SQLiteDatabase db = helper.getReadableDatabase();
-
-        String[] fields = {LocationContract.LocationEntry.LAT, LocationContract.LocationEntry.LONG};
-
- /* get the results. */
-        Cursor res = db.query(LocationContract.LocationEntry.TABLE_NAME, fields, null, null, null, null, null);
-
-
- /* traverse results. */
-        while(res.moveToNext()){
-
-            String lat = res.getString(res.getColumnIndex(LocationContract.LocationEntry.LAT));
-
-            Toast.makeText(getBaseContext(),"LAT IS:"+lat , Toast.LENGTH_LONG).show();
-        }
     }
 
     @Override
@@ -96,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void launchBluetoothActivity(View view){
         startActivity(new Intent(this, BluetoothActivity.class));
+    }
+
+    public void launchLocationViewActivity(View view){
+        startActivity(new Intent(this, AllStoredLocations.class));
     }
 }
 

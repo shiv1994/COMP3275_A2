@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
-
 import comp3275.uwi.comp3275_a2.models.DBHelper;
 import comp3275.uwi.comp3275_a2.models.LocationContract;
 
@@ -24,6 +23,7 @@ import comp3275.uwi.comp3275_a2.models.LocationContract;
  */
 public class LocationService extends Service implements LocationListener{
     private LocationManager locationManager;
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -33,7 +33,6 @@ public class LocationService extends Service implements LocationListener{
         // Let it continue running until it is stopped.
         setUpLocationManager();
         return START_STICKY;
-
     }
 
     public void setUpLocationManager(){
@@ -52,17 +51,13 @@ public class LocationService extends Service implements LocationListener{
 
     @Override
     public void onLocationChanged(Location location) {
-        //OPEN UP DB AND WRITE THE LOCATION!
-//        String msg = "New Latitude: " + location.getLatitude()
-//                + "New Longitude: " + location.getLongitude();
-//
-//        Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
-
+        //Open db and write location
         SQLiteOpenHelper helper = new DBHelper(this);
         final SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(LocationContract.LocationEntry.LAT, location.getLatitude());
         cv.put(LocationContract.LocationEntry.LONG, location.getLongitude());
+        cv.put(LocationContract.LocationEntry.FIRST_BOOT, "Y");
         db.insert(LocationContract.LocationEntry.TABLE_NAME, null, cv);
         //Stop service after first location obtained!
         this.stopSelf();
@@ -76,14 +71,9 @@ public class LocationService extends Service implements LocationListener{
     }
 
     @Override
-    public void onProviderEnabled(String provider) {
-//        Toast.makeText(getBaseContext(), "Gps is turned on!! ",
-//                Toast.LENGTH_SHORT).show();
-    }
+    public void onProviderEnabled(String provider) {}
 
     @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
+    public void onStatusChanged(String provider, int status, Bundle extras) {}
 
 }

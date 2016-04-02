@@ -15,5 +15,6 @@
     <string name="gyro_label_3">Rate of rotation around the z-axis</string>
     <string name="title_activity_location">Location Activity</string>
     <string name="title_activity_bluetooth">Bluetooth Activity</string>
+    <string name="title_activity_all_stored_locations">AllStoredLocations</string>
 
 </resources>

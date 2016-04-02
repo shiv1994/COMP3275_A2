@@ -61,4 +61,15 @@
         android:layout_alignStart="@+id/loc_btn"
         android:layout_alignEnd="@+id/loc_btn" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All Stored Locations"
+        android:id="@+id/button"
+        android:onClick="launchLocationViewActivity"
+        android:layout_below="@+id/blue_btn"
+        android:layout_alignStart="@+id/blue_btn"
+        android:layout_marginTop="57dp"
+        android:layout_alignEnd="@+id/blue_btn" />
+
 </RelativeLayout>
