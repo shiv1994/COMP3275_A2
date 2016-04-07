@@ -12,12 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ProximitySensor extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager mySensorManager;
     private Sensor proxSensor;
     private TextView distView;
+    private boolean proxSensorPresent=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +40,16 @@ public class ProximitySensor extends AppCompatActivity implements SensorEventLis
 
         mySensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         proxSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-
         distView = (TextView)findViewById(R.id.distView);
+
+        if(proxSensor == null){
+            // device does not possess a proximity sensor
+            // notify user of this
+            Toast.makeText(ProximitySensor.this, "Sorry, your device does not possess a proximity sensor", Toast.LENGTH_LONG).show();
+
+            proxSensorPresent = false;
+            distView.setText("N/A");
+        }
     }
 
     @Override
@@ -58,12 +68,16 @@ public class ProximitySensor extends AppCompatActivity implements SensorEventLis
 
     protected void onPause(){
         super.onPause();
-        mySensorManager.unregisterListener(this);
+        if(proxSensorPresent){
+            mySensorManager.unregisterListener(this);
+        }
     }
 
     protected void onResume(){
         super.onResume();
-        mySensorManager.registerListener(this, proxSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        if(proxSensorPresent){
+            mySensorManager.registerListener(this, proxSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
     }
 
 }
