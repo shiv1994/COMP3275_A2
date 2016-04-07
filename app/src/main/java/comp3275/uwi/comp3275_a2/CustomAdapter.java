@@ -18,7 +18,7 @@ import comp3275.uwi.comp3275_a2.models.LocationObject;
 public class CustomAdapter extends ArrayAdapter<LocationObject> {
     private ArrayList<LocationObject> items = new ArrayList<>();
     private int resource;
-    
+
     public CustomAdapter(Context context, int resource ,ArrayList<LocationObject> items){
         super(context, 0, items);
         this.resource=resource;
