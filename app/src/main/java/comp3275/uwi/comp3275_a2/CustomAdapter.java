@@ -34,14 +34,14 @@ public class CustomAdapter extends ArrayAdapter<LocationObject> {
         TextView time = (TextView)rowView.findViewById(R.id.timeTxtView);
         TextView lat = (TextView) rowView.findViewById(R.id.latTxtView);
         TextView longt = (TextView) rowView.findViewById(R.id.longTxtView);
-//        TextView alt = (TextView) rowView.findViewById(R.id.)
+        TextView alt = (TextView) rowView.findViewById(R.id.altTxtView);
         //get item from the correct position.
         LocationObject locObj = items.get(position);
 
         time.setText(locObj.getTime());
         lat.setText(locObj.getLatitude());
         longt.setText(locObj.getLongtitude());
-//        alt.setText(locObj.getAltitude())
+        alt.setText(locObj.getAltitude());
 
         return rowView;
     }

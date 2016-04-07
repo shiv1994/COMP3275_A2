@@ -49,7 +49,7 @@ public class AllStoredLocations extends AppCompatActivity {
         Cursor res = db.query(LocationContract.LocationEntry.TABLE_NAME, fields, null, null, null, null, null);
 
         ArrayList<LocationObject> locations = new ArrayList<>();
-        locations.add(new LocationObject("TIME", "LAT", "LONG"));
+        locations.add(new LocationObject("TIME", "LAT", "LONG", "ALT"));
         /* traverse results. */
         while(res.moveToNext()){
 
