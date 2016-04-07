@@ -15,7 +15,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
-import comp3275.uwi.comp3275_a2.models.DBHelper;
+
 import comp3275.uwi.comp3275_a2.models.LocationContract;
 
 /**

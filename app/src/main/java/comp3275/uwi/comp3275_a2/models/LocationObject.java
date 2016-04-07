@@ -10,10 +10,11 @@ public class LocationObject {
 
     private String altitude;
 
-    public LocationObject(String time, String latitude, String longtitude){
+    public LocationObject(String time, String latitude, String longtitude, String altitude){
         this.time = time;
         this.latitude = latitude;
         this.longtitude = longtitude;
+        this.altitude=altitude;
     }
 
     public String getTime() {

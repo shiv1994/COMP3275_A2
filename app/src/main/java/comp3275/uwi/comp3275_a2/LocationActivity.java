@@ -5,8 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -21,10 +19,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
-import comp3275.uwi.comp3275_a2.models.DBHelper;
 
 public class LocationActivity extends AppCompatActivity implements LocationListener {
     private LocationManager locationManager;

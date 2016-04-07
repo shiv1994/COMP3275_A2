@@ -14,7 +14,6 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import comp3275.uwi.comp3275_a2.models.DBHelper;
 import comp3275.uwi.comp3275_a2.models.LocationContract;
 import comp3275.uwi.comp3275_a2.models.LocationObject;
 
@@ -35,11 +34,16 @@ public class AllStoredLocations extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        loadItems();
+    }
+
+    public void loadItems(){
 
         SQLiteOpenHelper helper = new DBHelper(this);
         final SQLiteDatabase db = helper.getReadableDatabase();
 
-        String[] fields = {LocationContract.LocationEntry.LAT, LocationContract.LocationEntry.LONG, LocationContract.LocationEntry.FIRST_BOOT , LocationContract.LocationEntry.TIME};
+        //set up fields
+        String[] fields = {LocationContract.LocationEntry.LAT, LocationContract.LocationEntry.LONG, LocationContract.LocationEntry.ALTITUDE , LocationContract.LocationEntry.TIME};
 
         /* get the results. */
         Cursor res = db.query(LocationContract.LocationEntry.TABLE_NAME, fields, null, null, null, null, null);
@@ -51,17 +55,14 @@ public class AllStoredLocations extends AppCompatActivity {
 
             String latitude = res.getString(res.getColumnIndex(LocationContract.LocationEntry.LAT));
             String longtitude =  res.getString(res.getColumnIndex(LocationContract.LocationEntry.LONG));
-            String firstBoot = res.getString(res.getColumnIndex(LocationContract.LocationEntry.FIRST_BOOT));
+            String altitude = res.getString(res.getColumnIndex(LocationContract.LocationEntry.ALTITUDE));
             String time = res.getString(res.getColumnIndex(LocationContract.LocationEntry.TIME));
-            if(firstBoot.equals("Y")){
-                locations.add(new LocationObject(time,latitude,longtitude));
-            }
+            locations.add(new LocationObject(time,latitude,longtitude,altitude));
         }
+
         ListView items_list_view = (ListView) findViewById(R.id.listView);
         ArrayAdapter adapter = new CustomAdapter(AllStoredLocations.this, R.layout.locationobjectlayout ,locations);
         items_list_view.setAdapter(adapter);
-
-
     }
 
 }
