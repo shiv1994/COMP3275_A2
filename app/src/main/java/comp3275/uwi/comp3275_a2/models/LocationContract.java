@@ -14,7 +14,7 @@ public class LocationContract {
             LocationEntry._ID + INT_TYPE + " PRIMARY KEY AUTOINCREMENT, " +
             LocationEntry.LAT + TEXT_TYPE + ", "+
             LocationEntry.LONG + TEXT_TYPE + ", "+
-            LocationEntry.FIRST_BOOT + TEXT_TYPE + ", "+
+            LocationEntry.ALTITUDE + TEXT_TYPE + ", "+
             LocationEntry.TIME + " DATE DEFAULT CURRENT_TIMESTAMP" +
             ");";
 
@@ -24,6 +24,6 @@ public class LocationContract {
         public static final String LAT = "latitude";
         public static final String LONG = "longtitude";
         public static final String TIME = "timecreated";
-        public static final String FIRST_BOOT ="firstboot";
+        public static final String ALTITUDE ="altitude";
     }
 }

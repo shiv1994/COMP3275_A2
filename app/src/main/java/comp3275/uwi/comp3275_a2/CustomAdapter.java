@@ -18,6 +18,7 @@ import comp3275.uwi.comp3275_a2.models.LocationObject;
 public class CustomAdapter extends ArrayAdapter<LocationObject> {
     private ArrayList<LocationObject> items = new ArrayList<>();
     private int resource;
+    
     public CustomAdapter(Context context, int resource ,ArrayList<LocationObject> items){
         super(context, 0, items);
         this.resource=resource;
@@ -33,13 +34,14 @@ public class CustomAdapter extends ArrayAdapter<LocationObject> {
         TextView time = (TextView)rowView.findViewById(R.id.timeTxtView);
         TextView lat = (TextView) rowView.findViewById(R.id.latTxtView);
         TextView longt = (TextView) rowView.findViewById(R.id.longTxtView);
-
+//        TextView alt = (TextView) rowView.findViewById(R.id.)
         //get item from the correct position.
         LocationObject locObj = items.get(position);
 
         time.setText(locObj.getTime());
         lat.setText(locObj.getLatitude());
         longt.setText(locObj.getLongtitude());
+//        alt.setText(locObj.getAltitude())
 
         return rowView;
     }

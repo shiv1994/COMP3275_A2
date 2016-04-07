@@ -1,8 +1,10 @@
-package comp3275.uwi.comp3275_a2.models;
+package comp3275.uwi.comp3275_a2;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import comp3275.uwi.comp3275_a2.models.LocationContract;
 
 /**
  * Created by Shiva on 3/30/2016.

@@ -1,10 +1,6 @@
 package comp3275.uwi.comp3275_a2;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,13 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-
-import comp3275.uwi.comp3275_a2.models.DBHelper;
-import comp3275.uwi.comp3275_a2.models.LocationContract;
-import comp3275.uwi.comp3275_a2.models.LocationObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,22 +35,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if(position == 0){
+                if (position == 0) {
                     launchAccelerometerActivity(view);
-                }
-                else if(position == 1){
+                } else if (position == 1) {
                     launchGyroscopeActivity(view);
-                }
-                else if(position == 2){
+                } else if (position == 2) {
                     launchProximityActivity(view);
-                }
-                else if(position == 3){
+                } else if (position == 3) {
                     launchLocationActivity(view);
-                }
-                else if(position == 4){
+                } else if (position == 4) {
                     launchBluetoothActivity(view);
-                }
-                else if(position == 5){
+                } else if (position == 5) {
                     launchLocationViewActivity(view);
                 }
             }

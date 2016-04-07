@@ -4,12 +4,17 @@ package comp3275.uwi.comp3275_a2.models;
  * Created by Shiva on 4/1/2016.
  */
 public class LocationObject {
-    private String time, latitude, longtitude;
+    private String time;
+    private String latitude;
+    private String longtitude;
 
-    public LocationObject(String time, String latitude, String longtitude){
+    private String altitude;
+
+    public LocationObject(String time, String latitude, String longtitude, String altitude){
         this.time = time;
         this.latitude = latitude;
         this.longtitude = longtitude;
+        this.altitude=altitude;
     }
 
     public String getTime() {
@@ -34,5 +39,13 @@ public class LocationObject {
 
     public void setLongtitude(String longtitude) {
         this.longtitude = longtitude;
+    }
+
+    public String getAltitude() {
+        return altitude;
+    }
+
+    public void setAltitude(String altitude) {
+        this.altitude = altitude;
     }
 }

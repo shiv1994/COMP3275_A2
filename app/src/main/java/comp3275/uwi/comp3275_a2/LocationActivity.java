@@ -1,11 +1,10 @@
 package comp3275.uwi.comp3275_a2;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -18,13 +17,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import comp3275.uwi.comp3275_a2.models.DBHelper;
 
 public class LocationActivity extends AppCompatActivity implements LocationListener {
     private LocationManager locationManager;
     private static final int MY_PERMISSION_REQUEST_LOCATION=1;
+    private TextView latView, longtView, altView;
+    private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +41,16 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
                         .setAction("Action", null).show();
             }
         });
-        setUpDB();
+        progress = ProgressDialog.show(this, "Please Wait",
+                "Fetching Location", true);
+        setUpTextViews();
         setUpLocationManager();
     }
 
-    public void setUpDB(){
-        //Setup DB
-        SQLiteOpenHelper helper = new DBHelper(this);
-        final SQLiteDatabase db = helper.getWritableDatabase();
+    public void setUpTextViews(){
+        latView = (TextView) findViewById(R.id.latView);
+        longtView = (TextView) findViewById(R.id.longtView);
+        altView = (TextView) findViewById(R.id.altView);
     }
 
     public void setUpLocationManager(){
@@ -59,21 +61,20 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     MY_PERMISSION_REQUEST_LOCATION);
         }
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-                0, 0, this);
+        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER,
+                this, null);
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        String msg = "New Latitude: " + location.getLatitude()
-                + "New Longitude: " + location.getLongitude();
-
-        Toast.makeText(getBaseContext(), msg, Toast.LENGTH_LONG).show();
+        progress.dismiss();
+        latView.setText(Double.toString(location.getLatitude()));
+        longtView.setText(Double.toString(location.getLongitude()));
+        altView.setText(Double.toString(location.getAltitude()));
     }
 
     @Override
     public void onProviderDisabled(String provider) {
-
         Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
         startActivity(intent);
         Toast.makeText(getBaseContext(), "Gps is turned off!! ",
@@ -82,13 +83,33 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
 
     @Override
     public void onProviderEnabled(String provider) {
-
         Toast.makeText(getBaseContext(), "Gps is turned on!! ",
                 Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    public void onResume(){
+        super.onResume();
+        if ( ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSION_REQUEST_LOCATION);
+        }
+        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER,
+                this, null);
+    }
+
+    public void onPause(){
+        super.onPause();
+        if ( ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    MY_PERMISSION_REQUEST_LOCATION);
+        }
+        locationManager.removeUpdates(LocationActivity.this);
+
 
     }
 
