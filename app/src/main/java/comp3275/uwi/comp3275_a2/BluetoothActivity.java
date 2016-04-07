@@ -1,5 +1,6 @@
 package comp3275.uwi.comp3275_a2;
 
+import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -14,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,8 +28,10 @@ public class BluetoothActivity extends AppCompatActivity {
     private boolean isRegistered=false;
     private IntentFilter filter;                        //  to be used to register for ACTION_FOUND
     private IntentFilter filter2;                       // to be used to register for ACTION_DISCOVERY_FINISHED
+    private IntentFilter filter3;                       // to be used to register for ACTION_DISCOVERY_STARTED
 
     private BroadcastReceiver receiver;
+    private ProgressDialog scanProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +92,20 @@ public class BluetoothActivity extends AppCompatActivity {
                     devices.add(device.getName() + " - " + device.getAddress());
                 }
 
+                if(BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)){
+                    // Bluetooth adapter has started the remote device discovery process.
+
+                    // display progress dialog to user indicating the scanning process is taking place
+                    scanProgress = ProgressDialog.show(BluetoothActivity.this, "Please Wait", "Scanning for devices", true);
+                }
+
                 if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
                     // Bluetooth adapter has finished the device discovery process
+
+                    // remove progress dialog
+                    scanProgress.dismiss();
+
+                    Toast.makeText(BluetoothActivity.this, "Scanning Complete", Toast.LENGTH_SHORT).show();
 
                     // get access to the list view showing the discovered devices
                     ListView listView = (ListView)findViewById(R.id.discovered_devices);
@@ -104,10 +120,13 @@ public class BluetoothActivity extends AppCompatActivity {
         // Register the broadcast receiver
         filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
         filter2 = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        filter3 = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
 
         registerReceiver(receiver, filter);
         registerReceiver(receiver, filter2);
+        registerReceiver(receiver, filter3);
 
+        // boolean updated to indicate that the broadcast receiver was registered
         isRegistered = true;
 
         bluetoothAdapter.startDiscovery();
@@ -133,6 +152,7 @@ public class BluetoothActivity extends AppCompatActivity {
     @Override
     protected void onDestroy(){
 
+        // check if broadcast receiver was ever registered
         if(isRegistered){
             unregisterReceiver(receiver);
         }
