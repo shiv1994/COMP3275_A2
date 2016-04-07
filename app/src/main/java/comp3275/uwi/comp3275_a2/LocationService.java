@@ -57,7 +57,7 @@ public class LocationService extends Service implements LocationListener{
         ContentValues cv = new ContentValues();
         cv.put(LocationContract.LocationEntry.LAT, location.getLatitude());
         cv.put(LocationContract.LocationEntry.LONG, location.getLongitude());
-        cv.put(LocationContract.LocationEntry.FIRST_BOOT, "Y");
+        cv.put(LocationContract.LocationEntry.ALTITUDE, location.getAltitude());
         db.insert(LocationContract.LocationEntry.TABLE_NAME, null, cv);
         //Stop service after first location obtained!
         this.stopSelf();
