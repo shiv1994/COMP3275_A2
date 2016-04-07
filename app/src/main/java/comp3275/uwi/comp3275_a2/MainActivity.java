@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,6 +38,32 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        ListView lv = (ListView) findViewById(R.id.demo_list);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                if(position == 0){
+                    launchAccelerometerActivity(view);
+                }
+                else if(position == 1){
+                    launchGyroscopeActivity(view);
+                }
+                else if(position == 2){
+                    launchProximityActivity(view);
+                }
+                else if(position == 3){
+                    launchLocationActivity(view);
+                }
+                else if(position == 4){
+                    launchBluetoothActivity(view);
+                }
+                else if(position == 5){
+                    launchLocationViewActivity(view);
+                }
             }
         });
     }

@@ -17,4 +17,12 @@
     <string name="title_activity_bluetooth">Bluetooth Activity</string>
     <string name="title_activity_all_stored_locations">AllStoredLocations</string>
 
+    <string-array name="demo_items">
+        <item>Accelerometer Sensor Demo</item>
+        <item>Gyroscope Sensor Demo</item>
+        <item>Proximity Sensor Demo</item>
+        <item>GPS Location Demo</item>
+        <item>Bluetooth Demo</item>
+        <item>All Stored Locations</item>
+    </string-array>
 </resources>
