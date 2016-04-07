@@ -19,6 +19,7 @@ public class GyroscopeSensor extends AppCompatActivity implements SensorEventLis
     private SensorManager mySensorManager;
     private Sensor gyroSensor;
     private TextView xRotView, yRotView, zRotView;
+    private boolean gyroSensorPresent=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,18 @@ public class GyroscopeSensor extends AppCompatActivity implements SensorEventLis
         xRotView = (TextView)findViewById(R.id.gyroTxtView);
         yRotView = (TextView)findViewById(R.id.gyroTxtView2);
         zRotView = (TextView)findViewById(R.id.gyroTxtView3);
+
+        if(gyroSensor == null){
+            // device does not possess a gyroscope sensor
+            // notify user of this
+            Toast.makeText(GyroscopeSensor.this, "Sorry, your device does not possess a gyroscope sensor", Toast.LENGTH_LONG).show();
+
+            gyroSensorPresent = false;
+
+            xRotView.setText("N/A");
+            yRotView.setText("N/A");
+            zRotView.setText("N/A");
+        }
     }
 
     @Override
@@ -70,11 +83,15 @@ public class GyroscopeSensor extends AppCompatActivity implements SensorEventLis
 
     protected void onPause(){
         super.onPause();
-        mySensorManager.unregisterListener(this);
+        if(gyroSensorPresent){
+            mySensorManager.unregisterListener(this);
+        }
     }
 
     protected void onResume(){
         super.onResume();
-        mySensorManager.registerListener(this, gyroSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        if(gyroSensorPresent){
+            mySensorManager.registerListener(this, gyroSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
     }
 }
