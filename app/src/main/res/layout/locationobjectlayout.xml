@@ -2,30 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="5">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="51dp"
+        android:layout_width="0dp"
+        android:layout_height="53dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Time"
         android:id="@+id/timeTxtView"
-        android:layout_weight="0.05" />
+        android:layout_weight="2"
+        android:textSize="13dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="53dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Lat"
         android:id="@+id/latTxtView"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.42" />
+        android:layout_weight="1"
+        android:textSize="13dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="53dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Long"
         android:id="@+id/longTxtView"
-        android:layout_weight="0.40" />
+        android:layout_weight="1"
+        android:textSize="13dp" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="53dp"
+        android:layout_weight="1"
+        android:text="Alt"
+        android:id="@+id/altTxtView"
+        android:layout_gravity="center_horizontal"
+        android:textSize="13dp" />
 </LinearLayout>
