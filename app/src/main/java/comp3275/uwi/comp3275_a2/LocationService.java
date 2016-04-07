@@ -23,7 +23,7 @@ import comp3275.uwi.comp3275_a2.models.LocationContract;
  */
 public class LocationService extends Service implements LocationListener{
     private LocationManager locationManager;
-
+    private Intent intent = null;
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -31,6 +31,7 @@ public class LocationService extends Service implements LocationListener{
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Let it continue running until it is stopped.
+        this.intent = intent;
         setUpLocationManager();
         return START_STICKY;
     }
@@ -60,14 +61,14 @@ public class LocationService extends Service implements LocationListener{
         cv.put(LocationContract.LocationEntry.ALTITUDE, location.getAltitude());
         db.insert(LocationContract.LocationEntry.TABLE_NAME, null, cv);
         //Stop service after first location obtained!
-        this.stopSelf();
+        this.stopService(this.intent);
     }
 
     @Override
     public void onProviderDisabled(String provider) {
         Toast.makeText(getBaseContext(), "Please turn on GPS.",
                 Toast.LENGTH_SHORT).show();
-        this.stopSelf();
+        this.stopService(this.intent);
     }
 
     @Override
