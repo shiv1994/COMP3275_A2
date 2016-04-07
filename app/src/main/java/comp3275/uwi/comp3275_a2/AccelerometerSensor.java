@@ -19,26 +19,24 @@ public class AccelerometerSensor extends AppCompatActivity implements SensorEven
     private SensorManager senSensorManager;
     private Sensor senAccelerometer;
     private TextView xView, yView, zView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accelerometer_sensor);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setUpViews();
+        setUpSensorManager();
+    }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
+    public void setUpViews(){
         xView = (TextView) findViewById(R.id.textViewX);
         yView = (TextView) findViewById(R.id.textViewY);
         zView = (TextView) findViewById(R.id.textViewZ);
+    }
 
+    public void setUpSensorManager(){
         senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         senSensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_NORMAL);
@@ -73,6 +71,4 @@ public class AccelerometerSensor extends AppCompatActivity implements SensorEven
         super.onResume();
         senSensorManager.registerListener(this, senAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
-
-
 }
