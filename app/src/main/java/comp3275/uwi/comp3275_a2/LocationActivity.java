@@ -61,8 +61,8 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     MY_PERMISSION_REQUEST_LOCATION);
         }
-        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER,
-                this, null);
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                0,0, this);
     }
 
     @Override
