@@ -44,7 +44,7 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         progress = ProgressDialog.show(this, "Please Wait",
                 "Fetching Location", true);
         setUpTextViews();
-        setUpLocationManager();
+        //setUpLocationManager();
     }
 
     public void setUpTextViews(){
@@ -94,12 +94,7 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
 
     public void onResume(){
         super.onResume();
-        if ( ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSION_REQUEST_LOCATION);
-        }
-        locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER,
-                this, null);
+        setUpLocationManager();
     }
 
     public void onPause(){

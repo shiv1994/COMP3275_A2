@@ -45,8 +45,7 @@ public class LocationService extends Service implements LocationListener{
                     Toast.LENGTH_SHORT).show();
         }
         else {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-                    0, 0, this);
+            locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this,null);
         }
     }
 
@@ -60,7 +59,7 @@ public class LocationService extends Service implements LocationListener{
         cv.put(LocationContract.LocationEntry.LONG, location.getLongitude());
         cv.put(LocationContract.LocationEntry.ALTITUDE, location.getAltitude());
         db.insert(LocationContract.LocationEntry.TABLE_NAME, null, cv);
-        //Stop service after first location obtained!
+        //Stop service after location obtained!
         this.stopService(this.intent);
     }
 
